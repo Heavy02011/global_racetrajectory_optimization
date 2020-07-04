@@ -29,19 +29,20 @@ file_paths = {"veh_params_file": "racecar.ini"}
 debug = True                                    # print console messages
 plot_opts = {"mincurv_curv_lin": False,         # plot curv. linearization (original and solution based) (mincurv only)
              "raceline": True,                  # plot optimized path
-             "imported_bounds": False,          # plot imported bounds (analyze difference to interpolated bounds)
+             "imported_bounds": True,          # plot imported bounds (analyze difference to interpolated bounds)
              "raceline_curv": True,             # plot curvature profile of optimized path
              "racetraj_vel": True,              # plot velocity profile
-             "racetraj_vel_3d": False,          # plot 3D velocity profile above raceline
+             "racetraj_vel_3d": True,          # plot 3D velocity profile above raceline
              "racetraj_vel_3d_stepsize": 1.0,   # [m] vertical lines stepsize in 3D velocity profile plot
              "spline_normals": False,           # plot spline normals to check for crossings
-             "mintime_plots": False}            # plot states, controls, friction coeffs etc. (mintime only)
+             "mintime_plots": True}            # plot states, controls, friction coeffs etc. (mintime only)
 
 # select track file (including centerline coordinates + track widths) --------------------------------------------------
 # file_paths["track_name"] = "rounded_rectangle"                              # artificial track
 # file_paths["track_name"] = "handling_track"                                 # artificial track
-file_paths["track_name"] = "berlin_2018"                                    # Berlin Formula E 2018
+#file_paths["track_name"] = "berlin_2018"                                    # Berlin Formula E 2018
 # file_paths["track_name"] = "modena_2019"                                    # Modena 2019
+file_paths["track_name"] = "mountain_track_10"                                    # DIYrobocars, Virtual Race League
 
 # set import options ---------------------------------------------------------------------------------------------------
 imp_opts = {"flip_imp_track": False,                # flip imported track to reverse direction
@@ -57,6 +58,8 @@ imp_opts = {"flip_imp_track": False,                # flip imported track to rev
 # 'mincurv_iqp'         minimum curvature optimization with iterative call
 # 'mintime'             time-optimal trajectory optimization
 opt_type = 'mintime'
+#opt_type = 'mincurv_iqp'
+#opt_type = 'shortest_path'
 
 # set mintime specific options (mintime only) --------------------------------------------------------------------------
 # tpadata:                      set individual friction map data file if desired (e.g. for varmue maps), else set None,
@@ -68,16 +71,16 @@ opt_type = 'mintime'
 # recalc_vel_profile_by_tph:    override mintime velocity profile by ggv based calculation (see TPH package)
 
 mintime_opts = {"tpadata": None,
-                "warm_start": False,
+                "warm_start": True,
                 "var_friction": None,
-                "reopt_mintime_solution": False,
-                "recalc_vel_profile_by_tph": False}
+                "reopt_mintime_solution": True,
+                "recalc_vel_profile_by_tph": True}
 
 # lap time calculation table -------------------------------------------------------------------------------------------
 lap_time_mat_opts = {"use_lap_time_mat": False,             # calculate a lap time matrix (diff. top speeds and scales)
                      "gg_scale_range": [0.3, 1.0],          # range of gg scales to be covered
                      "gg_scale_stepsize": 0.05,             # step size to be applied
-                     "top_speed_range": [100.0, 150.0],     # range of top speeds to be simulated [in km/h]
+                     "top_speed_range": [100.0, 180.0],     # range of top speeds to be simulated [in km/h]
                      "top_speed_stepsize": 5.0,             # step size to be applied
                      "file": "lap_time_matrix.csv"}         # file name of the lap time matrix (stored in "outputs")
 
